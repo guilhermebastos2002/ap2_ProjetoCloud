@@ -1,0 +1,10 @@
+com\example\projetoCloud_ap2\ProjetoCloudAp2Application.class
+com\example\projetoCloud_ap2\model\Transacao.class
+com\example\projetoCloud_ap2\model\Usuario.class
+com\example\projetoCloud_ap2\controller\UsuarioController.class
+com\example\projetoCloud_ap2\service\UsuarioService.class
+com\example\projetoCloud_ap2\service\TransacaoService.class
+com\example\projetoCloud_ap2\controller\CartaoController.class
+com\example\projetoCloud_ap2\model\Cartao.class
+com\example\projetoCloud_ap2\service\CartaoService.class
+com\example\projetoCloud_ap2\controller\TransacaoController.class
