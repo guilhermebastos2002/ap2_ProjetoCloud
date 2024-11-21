@@ -33,6 +33,9 @@ public class Cartao {
     private LocalDate validade;
 
     @Column
+    private Double limite = 1000.00;
+
+    @Column
     private int numCartoes;
 
     @ManyToOne

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.projetoCloud_ap2.model.Cartao;
 import com.example.projetoCloud_ap2.model.Transacao;
 
 @Service
@@ -32,6 +33,9 @@ public class TransacaoService {
     }
 
     public Transacao createTransacao(Transacao novaTransacao) throws Exception {
+
+        Cartao cartaoAssociado = novaTransacao.getCartao();
+
         if (!TransacaoService.Transacoes.isEmpty()) {
             Transacao ultimaTransacao = TransacaoService.Transacoes.get(TransacaoService.Transacoes.size() - 1);
 
@@ -43,6 +47,18 @@ public class TransacaoService {
 
         TransacaoService.Transacoes.add(novaTransacao);
         return novaTransacao;
+
+            if (cartaoAssociado == null) {
+                throw new Exception("A transação deve estar associada a um cartão válido.");
+            } 
+            else if (novaTransacao.getValor() > cartaoAssociado.getLimite()) {
+            throw new Exception("O valor da transação não pode exceder o limite disponível: limite insuficiente.");
+        }
+
+
+
+
+
     }
 
     private boolean transacoesSaoIguais(Transacao t1, Transacao t2) {
@@ -60,6 +76,25 @@ public class TransacaoService {
 
         Transacoes.remove(transacaoASerAtualizada);
 
-        transacaoASerAtualizada.set
+        transacaoASerAtualizada.setDataTransacao((newTransacao.getDataTransacao()));
+        transacaoASerAtualizada.setValor(newTransacao.getValor());
+        transacaoASerAtualizada.setComerciante(newTransacao.getComerciante());
+
+        Transacoes.add(transacaoASerAtualizada);
+
+        return transacaoASerAtualizada;
     }
+
+    public void deleteTransacao(int id) {
+        Transacao transacaoASerExcluida = findTransacao(id);
+
+        if (transacaoASerExcluida == null)
+            return;
+
+        Transacoes.remove(transacaoASerExcluida);
+    }
+
+    
+
+
 }
